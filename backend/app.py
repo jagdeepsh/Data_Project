@@ -27,5 +27,5 @@ if __name__ == "__main__":
     
     # Compile all files and run API server side
     data_processor = DataProcessor(json=json_data, csv=csv_data, pdf=pdf_data, pptx=pptx_data)
-    port = int(os.getenv("FLASK_RUN_PORT", 5017))
+    port = int(os.getenv("FLASK_RUN_PORT", 5019))
     app.run(host="0.0.0.0", port=port, debug=True)

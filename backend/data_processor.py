@@ -5,10 +5,10 @@ import json
 
 class DataProcessor:
     def __init__(self, json=None, csv=None, pdf=None, pptx=None):
-        self.json = json.get_data()
-        self.csv = csv.get_data()
-        self.pdf = pdf.get_data()
-        self.pptx = pptx.get_data()
+        self.json = json.get_data() if json else []
+        self.csv = csv.get_data() if csv else []
+        self.pdf = pdf.get_data() if pdf else []
+        self.pptx = pptx.get_data() if pptx else []
         self.data = []
 
         if json:
@@ -32,9 +32,22 @@ class DataProcessor:
             return self.pdf
         if filetype == 'pptx':
             return self.pptx
-    
-    def filter_data(self, *filter):
-        return
+        
+    def set_file(self, json=None, csv=None, pdf=None, pptx=None):
+        self.json = json.get_data() if json else []
+        self.csv = csv.get_data() if csv else []
+        self.pdf = pdf.get_data() if pdf else []
+        self.pptx = pptx.get_data() if pptx else []
+        self.data = []
+
+        if json:
+            self.data.append(self.json)
+        if csv:
+            self.data.append(self.csv)
+        if pdf:
+            self.data.append(self.pdf)
+        if pptx:
+            self.data.append(self.pptx)
 
 
 
@@ -52,11 +65,6 @@ class JSONData:
     def set_data(self, path=None):
         self.path = path
 
-
-    def fitler_data(self, *filter):
-        # Returns a filtered list of the data
-        filter = list(filter)
-        return
     
 
 class CSVData:
@@ -73,12 +81,6 @@ class CSVData:
     def set_data(self, path=None):
         self.path = path
 
-
-    def fitler_data(self, *filter):
-        # Returns a filtered list of the data
-        filter = list(filter)
-        return
-    
 
 class PDFData:
     def __init__(self, path=None):
@@ -110,10 +112,6 @@ class PDFData:
         self.path = path
 
 
-    def fitler_data(self, *filter):
-        # Returns a filtered list of the data
-        filter = list(filter)
-        return
     
 
 class PPTXData:
@@ -174,11 +172,6 @@ class PPTXData:
     def set_data(self, path=None):
         self.path = path
 
-
-    def fitler_data(self, *filter):
-        # Returns a filtered list of the data
-        filter = list(filter)
-        return
     
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5017";
+const BASE_URL = "http://127.0.0.1:5019"
 
 outputJson = document.getElementById('outputJson')
 outputCsv = document.getElementById('outputCsv')
@@ -36,6 +36,7 @@ document.getElementById('getCsvDataButton').addEventListener('click', function()
     .then(data => {
         clearOutput();
         displayCsvTable(data, outputCsv)
+        // createFilterDropdown(data);
     })
     .catch(error => {
         document.getElementById('output').textContent = 'Error: ' + error
@@ -322,4 +323,24 @@ function tableCreation(headers) {
     table.appendChild(thead);
 
     return table;
+}
+
+// function createFilterDropdown(data) {
+//     const filterDiv = document.getElementById('csv-filter');
+//     filterDrv.innerHTML = '';
+
+//     const filterLabel = document.createElement('label');
+//     filterLabel.textContent = 'Filter by Location: ';
+//     filterDiv.appendChild(filterLabel);
+
+//     const select = document.createElement('select');
+//     select.id = 'locationDropdown';
+
+//     const locations = [...new Set(data.map(entry => entry.Location))];
+//     locations.forEach(location => {
+//         const option = document.createElement('option');
+//         option.value = location;
+//         option.textContent = location;
+//         select.appendChild(option);
+//     })
 }
